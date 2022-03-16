@@ -8,7 +8,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import LockIcon from '@mui/icons-material/Lock';
 import Link from 'next/link'
 
-const login = () => {
+const signup = () => {
     return (
         <>
             <headers>
@@ -57,4 +57,4 @@ const login = () => {
         </>
     )
 }
-export default login
+export default signup

@@ -18,23 +18,17 @@ const pin = () => {
                         </Col>
                         <Col sm={12} md={5} className="d-grid ">
                             <h2 className='mx-4 my-5'>
-                                Secure Your Account, Your Wallet,
-                                and Your Data With 6 Digits PIN
-                                That You Created Yourself.
+                                Did You Forgot Your Password?
+                                Don’t Worry, You Can Reset Your
+                                Password In a Minutes.
                             </h2>
                             <p className='mx-4 my-3'>
-                                Create 6 digits pin to secure all
-                                your money and your data in Zwallet
-                                app. Keep it secret and don’t tell
-                                anyone about your Zwallet account
-                                password and the PIN.
+                                To reset your password, you must
+                                type your e-mail and we will send
+                                a link to your email and you will
+                                be directed to the reset password screens.
                             </p>
-                            <div className='d-flex'>
-                                <Input type="password" autoComplete='off' className='py-3 my-2 mx-4 text-center' />
-                                <Input type="password" autoComplete='off' className='py-3 my-2 mx-4 text-center' />
-                                <Input type="password" autoComplete='off' className='py-3 my-2 mx-4 text-center' />
-                                <Input type='password' autoComplete='off' className='py-3 my-2 mx-4 text-center' />
-                            </div>
+                            <Input type="email" autoComplete='off' placeholder='Email ..' className='py-3 my-2 mx-4' startAdornment={<InputAdornment position="start"><EmailOutlinedIcon /></InputAdornment>} />
                             <div className='mx-4 my-4'>
                             </div>
                             <Button className='mx-4 py-3 my-5 rounded-btn bg-color3' variant="contained" >

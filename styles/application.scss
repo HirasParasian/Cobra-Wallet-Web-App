@@ -8,3 +8,7 @@ $theme-colors: (
   ) ;
 
 @import 'bootstrap/scss/bootstrap.scss';
+
+.nav-link.active{
+  background-color:#FF9292 ;
+}

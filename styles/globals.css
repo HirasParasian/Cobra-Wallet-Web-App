@@ -42,3 +42,11 @@ a {
 .rounded-btn{
   border-radius: 10px;
 }
+.nav-link.active{
+  background-color:#FF9292 ;
+}
+.css-h0q0iv-MuiButtonBase-root-MuiTab-root.Mui-selected{
+  color: white;
+  border-left:black 5px solid;
+  border-right:0px;
+}

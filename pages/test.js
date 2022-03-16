@@ -1,51 +1,92 @@
-import React from 'react'
-import InputU from '../components/InputU'
-import { FaCheck } from 'react-icons'
-import AccountCircle from '@mui/icons-material/AccountCircle';
+import * as React from 'react';
+import PropTypes from 'prop-types';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import GridViewIcon from '@mui/icons-material/GridView';
+import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
+import AddIcon from '@mui/icons-material/Add';
+import PermIdentityIcon from '@mui/icons-material/PermIdentity';
+import { convertLength } from '@mui/material/styles/cssUtils';
+import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 
+function TabPanel(props) {
+    const { children, value, index, ...other } = props;
 
-export const test = () => {
     return (
-        <>
-            <InputU icon="mail outline" label="Username :" block placeholder="Username" />
-            <InputU icon="lock" label="Username :" block version="input-underline" placeholder="Username" />
-            <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                <div className="container-fluid">
-                    <a className="navbar-brand" href="#">Navbar</a>
-                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span className="navbar-toggler-icon"></span>
-                    </button>
-                    <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li className="nav-item">
-                                <a className="nav-link active" aria-current="page" href="#">Home</a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="#">Link</a>
-                            </li>
-                            <li className="nav-item dropdown">
-                                <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Dropdown
-                                </a>
-                                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a className="dropdown-item" href="#">Action</a></li>
-                                    <li><a className="dropdown-item" href="#">Another action</a></li>
-                                    <li><a className="dropdown-item" href="#">Something else here</a></li>
-                                </ul>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link disabled" href="#" tabIndex="-1" aria-disabled="true">Disabled</a>
-                            </li>
-                        </ul>
-                        <form className="d-flex">
-                            <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                            <button className="btn btn-outline-success" type="submit">Search</button>
-                        </form>
-                    </div>
-                </div>
-            </nav>
-        </>
-    )
+        <div
+            role="tabpanel"
+            hidden={value !== index}
+            id={`vertical-tabpanel-${index}`}
+            aria-labelledby={`vertical-tab-${index}`}
+            {...other}
+        >
+            {value === index && (
+                <Box sx={{ p: 3 }}>
+                    <Typography>{children}</Typography>
+                </Box>
+            )}
+        </div>
+    );
 }
 
-export default test
+TabPanel.propTypes = {
+    children: PropTypes.node,
+    index: PropTypes.number.isRequired,
+    value: PropTypes.number.isRequired,
+};
+
+function a11yProps(index) {
+    return {
+        id: `vertical-tab-${index}`,
+        'aria-controls': `vertical-tabpanel-${index}`,
+    };
+}
+
+export default function VerticalTabs() {
+    const [value, setValue] = React.useState(0);
+
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
+    };
+
+    return (
+        <Box
+            className='m-5'
+            sx={{ flexGrow: 1, bgcolor: 'background.paper', display: 'flex', height: convertLength }}
+        >
+            <Tabs
+                orientation="vertical"
+                variant="scrollable"
+                value={value}
+                onChange={handleChange}
+                aria-label="Vertical tabs example"
+                sx={{ borderRight: 1, borderColor: 'divider' }}
+                className="bg-color3 rounded-btn"
+            >
+                <Tab className='mt-2' icon={<GridViewIcon />} iconPosition="start" label="Dashboard" {...a11yProps(0)} />
+                <Tab icon={<ArrowUpwardIcon />} iconPosition="start" label="Transfer" {...a11yProps(1)} />
+                <Tab icon={<AddIcon />} iconPosition="start" label="Top Up" {...a11yProps(2)} />
+                <Tab icon={<PermIdentityIcon />} iconPosition="start" label="Profile" {...a11yProps(3)} />
+                <div className></div>
+                <Tab className='mt-5 mb-2' icon={<LogoutRoundedIcon />} iconPosition="start" label="Logout" {...a11yProps(4)} />
+            </Tabs>
+            <TabPanel value={value} index={0}>
+                Item One
+            </TabPanel>
+            <TabPanel value={value} index={1}>
+                Item Two
+            </TabPanel>
+            <TabPanel value={value} index={2}>
+                Item Three
+            </TabPanel>
+            <TabPanel value={value} index={3}>
+                Item Four
+            </TabPanel>
+            <TabPanel value={value} index={4}>
+                Item Five
+            </TabPanel>
+        </Box>
+    );
+}

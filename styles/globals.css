@@ -42,11 +42,22 @@ a {
 .rounded-btn{
   border-radius: 10px;
 }
+.rounded-btn2{
+  border-radius: 20px;
+}
 .nav-link.active{
   background-color:#FF9292 ;
 }
 .css-h0q0iv-MuiButtonBase-root-MuiTab-root.Mui-selected{
   color: white;
   border-left:black 5px solid;
-  border-right:0px;
+  border-right:none;
+  padding-left: 10px;
+}
+.MuiTab-textColorPrimary{
+  color: #FF9292;
+  border-right: none;
+}
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link{
+  background-color: #FF9292;
 }

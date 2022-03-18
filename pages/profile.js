@@ -10,7 +10,7 @@ const profile = () => {
             <Navbar />
             <Container className='my-5'>
                 <Row>
-                    <Col xs={3}>
+                    <Col xs={12} md={3}>
                         <SideBar />
                     </Col>
                     <Col>

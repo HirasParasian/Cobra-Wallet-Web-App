@@ -37,19 +37,19 @@ export default function Home() {
             <Navbar />
             <Container className='my-5'>
                 <Row>
-                    <Col xs={3}>
+                    <Col xs={12} md={3}>
                         <SideBar />
                     </Col>
                     <Col>
                         <Row>
                             <Col xs={12} >
-                                <div className='banner bg-color1 shadow'>
-                                    <div className="section">
+                                <div className='col-sm-12 banner bg-color1 shadow'>
+                                    <div className="section col-sm-12 col-md-6">
                                         <div>Balance</div>
                                         <h3>Rp120.000</h3>
                                         <div>+62 813-9387-7946</div>
                                     </div>
-                                    <div className='section text-end'>
+                                    <div className='col-sm-12 col-md-6 section text-end'>
                                         <div className='mb-2'>
                                             <button className='button'>Transfer</button>
                                         </div>

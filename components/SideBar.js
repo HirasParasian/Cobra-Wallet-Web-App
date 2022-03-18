@@ -6,6 +6,7 @@ import { VscArrowUp } from 'react-icons/vsc'
 import { HiPlus } from 'react-icons/hi'
 import { RiUser3Line } from 'react-icons/ri'
 import { FiLogOut } from 'react-icons/fi'
+import { Container } from 'react-bootstrap'
 
 const SideBar = () => {
     const route = useRouter()
@@ -29,7 +30,7 @@ const SideBar = () => {
                 list-style-type: none;
             }
             .menu li {
-                margin: 10px 0;
+                margin: 8px 0;
             }
             .menu li a{
                 color: rgba(58, 61, 66, 0.8);
@@ -44,29 +45,31 @@ const SideBar = () => {
             }
         `}
             </style>
-            <ul className="menu shadow py-5">
-                {menu.map(item => {
-                    const Icon = item.icon
-                    return (
-                        <li key={item.name} className="mb-5">
-                            <Link href={item.link}>
-                                <a className={active === item.link ? 'active' : ''}>
-                                    <Icon className='me-3' />
-                                    {item.name}
-                                </a>
-                            </Link>
-                        </li>
-                    )
-                })}
-                <li key="logout" className="mt-5 pt-5">
-                    <Link href="/logout">
-                        <a>
-                            <FiLogOut className='me-3' />
-                            Log Out
-                        </a>
-                    </Link>
-                </li>
-            </ul>
+            <Container className='shadow rounded-btn2'>
+                <ul className="menu py-5">
+                    {menu.map(item => {
+                        const Icon = item.icon
+                        return (
+                            <li key={item.name} className="mb-5">
+                                <Link href={item.link}>
+                                    <a className={active === item.link ? 'active' : ''}>
+                                        <Icon className='me-3' />
+                                        {item.name}
+                                    </a>
+                                </Link>
+                            </li>
+                        )
+                    })}
+                    <li key="logout" className="mt-5 pt-5">
+                        <Link href="/logout">
+                            <a>
+                                <FiLogOut className='me-3' />
+                                Log Out
+                            </a>
+                        </Link>
+                    </li>
+                </ul>
+            </Container>
         </>
     )
 }

@@ -4,7 +4,7 @@ import Image from "next/image"
 
 const CardTransfer = ({ name, phoneNumber, photo }) => {
     return (
-        <div className='d-grid'>
+        <div className='d-grid shadow-sm my-5 mx-2 rounded-btn'>
             <Row>
                 <Col sm={12} md={1} className=''>
                     <Image

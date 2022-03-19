@@ -11,7 +11,7 @@ const initialState = {
     successMsg: ''
 }
 
-const auth = (state = initialState, action) => {
+const signup = (state = initialState, action) => {
     switch (action.type) {
         case 'USER_SIGNUP_PENDING': {
             state.error = []
@@ -41,10 +41,14 @@ const auth = (state = initialState, action) => {
             state.message = ""
             return { ...state }
         }
+        case 'ADD_CODE': {
+            state.userData.code = action.payload.code
+            return { ...state }
+        }
         default: {
             return { ...state }
         }
     }
 }
 
-export default auth
+export default signup

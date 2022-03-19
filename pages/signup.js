@@ -12,11 +12,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useRouter } from "next/router"
 
 
+
 const Signup = () => {
     const router = useRouter()
-    const signup = useSelector(state => state.register)
+    const signup = useSelector(state => state.signup)
     const dispatch = useDispatch()
-    const [passwordInvalid, setPasswordInvalid] = useState(false)
 
     const handleSubmit = (e) => {
         e.preventDefault()

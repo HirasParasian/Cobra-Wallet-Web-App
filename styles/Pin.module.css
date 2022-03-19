@@ -1,0 +1,14 @@
+.pin_container {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .pin_container > div {
+    flex : 1 1 100%;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .pin_input {
+    padding: 1.5rem;
+  }

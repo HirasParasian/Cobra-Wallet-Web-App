@@ -9,3 +9,9 @@ export const login = (email, password) => {
         payload: http().post('/auth/login', param)
     })
 }
+export const getProfile = (token) => {
+    return ({
+        type: 'GET_PROFILE',
+        payload: http(token).get('profile')
+    })
+}

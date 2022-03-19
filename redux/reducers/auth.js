@@ -53,7 +53,7 @@ const auth = (state = initialState, action) => {
         case 'GET_PROFILE_FULFILLED': {
             const { data } = action.payload
             state.isLoading = false
-            state.userData = data.result
+            state.userData = data.results
             return { ...state }
 
         }

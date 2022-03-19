@@ -14,8 +14,6 @@ export const PersonalInformation = () => {
     const fullName = String(auth?.fullName)
     const name = fullName?.split(" ");
     const name2 = name?.slice(1)
-    let firstName = name?.slice(0, 1)
-    let lastName = name2
     const dispatch = useDispatch()
     useEffect(() => {
         if (!auth.token) {
@@ -71,7 +69,7 @@ export const PersonalInformation = () => {
                                             <Col sm={12} className='d-flex flex-column'>
                                                 <div className='my-2 ms-3'>First Name :</div>
                                                 <InputGroup className="mb-3 border-0">
-                                                    <FormControl name="firstName" size='lg' defaultValue={firstName} className="mb-0 py-3 border-0" aria-label="First name" />
+                                                    <FormControl name="firstName" size='lg' defaultValue={name?.slice(0, 1)} className="mb-0 py-3 border-0" aria-label="First name" />
                                                 </InputGroup>
                                             </Col>
                                         </Row>
@@ -79,7 +77,7 @@ export const PersonalInformation = () => {
                                             <Col sm={12} className='d-flex flex-column'>
                                                 <div className='my-2 ms-3'>Last Name :</div>
                                                 <InputGroup className="mb-3 border-0">
-                                                    <FormControl name="lastName" size='lg' defaultValue={lastName} className="mb-0 py-3 border-0" aria-label="First name" />
+                                                    <FormControl name="lastName" size='lg' defaultValue={name2.join(' ')} className="mb-0 py-3 border-0" aria-label="First name" />
                                                 </InputGroup>
                                             </Col>
                                         </Row>

@@ -15,3 +15,11 @@ export const getProfile = (token) => {
         payload: http(token).get('profile')
     })
 }
+export const editProfile = (token, picture) => {
+    const params = new FormData()
+    params.append('picture', picture)
+    return ({
+        type: 'EDIT_PROFILE',
+        payload: http(token, true).patch('profile', params)
+    })
+}

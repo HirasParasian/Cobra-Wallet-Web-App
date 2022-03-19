@@ -1,16 +1,43 @@
-import React from 'react'
-import { Row, Col, Container } from 'react-bootstrap'
-import Input from '@mui/material/Input';
-import Button from '@mui/material/Button';
-import InputAdornment from '@mui/material/InputAdornment';
-import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
-import PersonIcon from '@mui/icons-material/Person';
-import LockIcon from '@mui/icons-material/Lock';
+import React, { useState } from 'react'
+import { Row, Col, Container, Form } from 'react-bootstrap'
+import Input from '../components/Input'
+import Button from 'react-bootstrap/Button'
 import Link from 'next/link'
+import { FiMail } from 'react-icons/fi'
+import { FaLock } from 'react-icons/fa'
+import ModalSuccess from '../components/ModalSuccess'
+import ModalError from '../components/ModalError'
+import { DataRegister } from '../redux/actions/signup'
+import { useDispatch, useSelector } from 'react-redux'
+import { useRouter } from "next/router"
 
-const signup = () => {
+
+const Signup = () => {
+    const router = useRouter()
+    const signup = useSelector(state => state.register)
+    const dispatch = useDispatch()
+    const [passwordInvalid, setPasswordInvalid] = useState(false)
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        // dispatch({ type: "RESET_REGISTER_STATE" })
+        const data = {
+            firstName: e.target.elements['firstName'].value,
+            lastName: e.target.elements['lastName'].value,
+            email: e.target.elements['email'].value,
+            password: e.target.elements['password'].value,
+        }
+        dispatch(DataRegister(data))
+
+        router.push('/pin')
+
+    }
+
+
     return (
         <>
+            {/* <ModalSuccess message={auth.successMsg} />
+            <ModalError message={auth.errorMsg} /> */}
             <headers>
                 <Container>
                     <Row>
@@ -25,20 +52,26 @@ const signup = () => {
                                 Transfering money is eassier than ever, you can access Zwallet wherever you are.
                                 Desktop, laptop, mobile phone? we cover all of that for you!
                             </p>
-                            <Input type="text" autoComplete='off' placeholder='First Name ..' className='py-3 my-2 mx-4' startAdornment={<InputAdornment position="start"><PersonIcon /></InputAdornment>} />
-                            <Input type="text" autoComplete='off' placeholder='Last Name ..' className='py-3 my-2 mx-4' startAdornment={<InputAdornment position="start"><PersonIcon /></InputAdornment>} />
-                            <Input type="email" autoComplete='off' placeholder='Email ..' className='py-3 my-2 mx-4' startAdornment={<InputAdornment position="start"><EmailOutlinedIcon /></InputAdornment>} />
-                            <Input type='password' autoComplete='off' placeholder='Password ..' className='py-3 mx-4' startAdornment={<InputAdornment position="start"><LockIcon /></InputAdornment>} />
-                            <div className='mx-4 my-4'>
-                                <Link href='/forgotpassword' >
-                                    <a className="d-flex justify-content-end text-decoration-none text-color3">
-                                        Forgot Password?
-                                    </a>
-                                </Link>
-                            </div>
-                            <Button className='mx-4 py-3 my-5 rounded-btn bg-color3' variant="contained" >
-                                Delete
-                            </Button>
+                            <Form className='mx-4' onSubmit={handleSubmit}>
+                                <div className="d-grid gap-2">
+                                    <Input type="text" name="firstName" placeholder='First Name ..' className='py-3 my-2 mx-5' icon={<FiMail />} />
+                                    <Input type="text" name='lastName' placeholder='Last Name ..' className='py-3 mx-4' icon={<FaLock />} />
+                                    <Input name="email" type="email" placeholder='Email ..' className='py-3 my-2 mx-5' icon={<FiMail />} />
+                                    <Input name="password" type='password' placeholder='Password ..' className='py-3 mx-4' icon={<FaLock />} />
+                                </div>
+                                <div className='mx-4 my-4'>
+                                    <Link href='/forgotpassword' >
+                                        <a className="d-flex justify-content-end text-decoration-none text-color1">
+                                            Forgot Password?
+                                        </a>
+                                    </Link>
+                                </div>
+                                <div className="d-grid gap-2">
+                                    <Button type="submit" variant="color3" className='btn py-3 my-5 rounded-btn2 bg-color1 text-light btn-color1' size="lg">
+                                        Log In
+                                    </Button>
+                                </div>
+                            </Form>
                             <div className="d-flex justify-content-center my-5">
                                 <p>
                                     Don’t have an account? Let’s &nbsp;
@@ -57,4 +90,4 @@ const signup = () => {
         </>
     )
 }
-export default signup
+export default Signup

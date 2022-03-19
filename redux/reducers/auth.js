@@ -1,5 +1,5 @@
 const initialState = {
-    token: null,
+    token: [],
     userData: {},
     isLoading: false,
     isError: false,
@@ -18,14 +18,13 @@ const auth = (state = initialState, action) => {
         }
         case 'AUTH_LOGIN_FULFILLED': {
             const { data } = action.payload
-            state.isLoading = false
-            state.isError = false
-            state.token = data.result
-            state.successMsg = data.message
-            state.errMsg = ""
-            if (!window.localStorage.getItem('token')) {
-                window.localStorage.setItem('token', state.token)
+            if (data.results?.token) {
+                state.token = data.results.token
+                if (!window.localStorage.getItem('token')) {
+                    window.localStorage.setItem('token', state.token)
+                }
             }
+            state.message = data.message
             return { ...state }
         }
         case 'AUTH_LOGIN_REJECTED': {

@@ -8,6 +8,8 @@ import { getProfile, editProfiles } from '../../redux/actions/auth'
 import { useSelector, useDispatch } from 'react-redux'
 import Button from 'react-bootstrap/Button'
 import { FiSave } from 'react-icons/fi'
+import ModalSuccess from '../../components/ModalSuccess'
+import ModalLoading from '../../components/ModalLoading'
 
 export const PersonalInformation = () => {
     const auth = useSelector(state => state.auth?.userData)

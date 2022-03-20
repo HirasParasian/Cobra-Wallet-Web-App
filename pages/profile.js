@@ -62,8 +62,8 @@ const Profile = () => {
     return (
         <>
             <Navbar />
-            <ModalSuccess message={auth.successMsg} />
-            <ModalLoading isLoading={auth.isLoading != true} />
+            <ModalSuccess message={tokens.successMsg} />
+            <ModalLoading isLoading={tokens.isLoading == true} />
             <Container className='my-5'>
                 <Row>
                     <Col xs={12} md={3}>

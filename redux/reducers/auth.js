@@ -201,8 +201,6 @@ const auth = (state = initialState, action) => {
             state.isLoading = false
             state.message = data.message
             state.successMsg = data.message
-            // state.errorMsg = ""
-            // state.errMsg = ""
             return { ...state }
 
         }
@@ -210,8 +208,8 @@ const auth = (state = initialState, action) => {
             const { data } = action.payload.response
             state.isLoading = false
             state.error = true
-            state.successMsg = data.error
-            // state.errMsg = data.messag
+            state.successMsg = data.message
+            return { ...state }
         }
         default: {
             return { ...state }

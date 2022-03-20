@@ -190,6 +190,29 @@ const auth = (state = initialState, action) => {
             state.successMsg = data.message
             return { ...state }
         }
+        case 'EDIT_PROFILE_PENDING': {
+            state.error = false
+            state.isLoading = true
+            state.message = ''
+            return { ...state }
+        }
+        case 'EDIT_PROFILE_FULFILLED': {
+            const { data } = action.payload
+            state.isLoading = false
+            state.message = data.message
+            state.successMsg = data.message
+            // state.errorMsg = ""
+            // state.errMsg = ""
+            return { ...state }
+
+        }
+        case 'EDIT_PROFILE_REJECTED': {
+            const { data } = action.payload.response
+            state.isLoading = false
+            state.error = true
+            state.successMsg = data.error
+            // state.errMsg = data.messag
+        }
         default: {
             return { ...state }
         }

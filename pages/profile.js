@@ -8,6 +8,8 @@ import { GrLinkNext } from 'react-icons/gr'
 import { FiEdit2, FiSave } from 'react-icons/fi'
 import { getProfile, editProfile } from '../redux/actions/auth'
 import { useSelector, useDispatch } from 'react-redux'
+import ModalSuccess from '../components/ModalSuccess'
+import ModalLoading from '../components/ModalLoading'
 
 
 
@@ -60,6 +62,8 @@ const Profile = () => {
     return (
         <>
             <Navbar />
+            <ModalSuccess message={auth.successMsg} />
+            <ModalLoading isLoading={auth.isLoading != true} />
             <Container className='my-5'>
                 <Row>
                     <Col xs={12} md={3}>

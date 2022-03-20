@@ -18,7 +18,7 @@ const Navbars = () => {
         const token = window.localStorage.getItem('token')
         dispatch(getTransaction(token))
     }, [])
-    const [showB, setShowB] = useState(true);
+    const [showB, setShowB] = useState(false);
     const toggleShowB = () => setShowB(!showB);
     return (
         <>
@@ -47,10 +47,9 @@ const Navbars = () => {
                     </Container>
                 </Navbar>
                 <Row>
-                    <Col md={6} className="mb-2 position-absolute end-0 bg-light rounded-btn2">
+                    <Col md={4} className="mb-2 mt-2 position-absolute end-0 bg-light rounded-btn2">
                         <Toast onClose={toggleShowB} show={showB} animation={false}>
                             <Toast.Body>
-
                                 {notif?.map((data, idx) => {
                                     return (
                                         <>

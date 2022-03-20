@@ -27,7 +27,7 @@ const ModalNotifSuccess = ({ message }) => {
                 </Modal.Header>
                 <Modal.Body className='py-5'>
                     <div className='text-center'>
-                        <div className='fs-1 pps fw-bold text-pallet-1'>Great!</div>
+                        <div className='fs-1 pps fw-bold text-pallet-1'>ZWallet!</div>
                         <div className='fs-4 pps  text-pallet-1'>{message}</div>
                     </div>
                 </Modal.Body>

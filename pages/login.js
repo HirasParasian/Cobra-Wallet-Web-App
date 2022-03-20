@@ -9,17 +9,20 @@ import { FiMail } from 'react-icons/fi'
 import { FaLock } from 'react-icons/fa'
 import ModalSuccess from '../components/ModalSuccess'
 import ModalError from '../components/ModalError'
+import { useRouter } from "next/router"
 
 
 const Login = () => {
     const auth = useSelector(state => state.auth)
     const dispatch = useDispatch()
+    const router = useRouter()
 
     const onLogin = (event) => {
         event.preventDefault()
         const email = event.target.elements['email'].value
         const password = event.target.elements['password'].value
         dispatch(login(email, password))
+        router.push('/home')
     }
     return (
         <>

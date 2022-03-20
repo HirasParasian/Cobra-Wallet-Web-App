@@ -26,7 +26,7 @@ const auth = (state = initialState, action) => {
                     window.localStorage.setItem('token', state.token)
                 }
             }
-            state.message = data.message
+            state.successMsg = data.message
             return { ...state }
         }
         case 'AUTH_LOGIN_REJECTED': {

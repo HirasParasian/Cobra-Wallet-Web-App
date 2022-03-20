@@ -17,28 +17,30 @@ const ChangePassword = () => {
                     <Col xs={12} md={9}>
                         <Row>
                             <Col xs={12}>
-                                <Row>
-                                    <Col sm={12} md={5} className="my-5 ">
-                                        <h5>Change Password</h5>
-                                        <div>You must enter your current
-                                            password and then type your
-                                            new password twice.
-                                        </div>
-                                    </Col>
-                                    <Col xs={12} md={7}>
-                                    </Col>
-                                    <Col xs={12} md={3}>
-                                    </Col>
-                                    <Col xs={12} md={6}>
-                                        <div className="d-grid gap-2">
-                                            <Input name="currentPassword" type='password' placeholder='Current Password ..' className='py-3 mx-4' icon={<FaLock color='rgba(169, 169, 169, 0.6)' />} />
-                                            <Input name="newPassword" type='password' placeholder='New Password ..' className='py-3 mx-4' icon={<FaLock color='rgba(169, 169, 169, 0.6)' />} />
-                                            <Input name="confirmPassword" type='password' placeholder='Confirm Password ..' className='py-3 mx-4' icon={<FaLock color='rgba(169, 169, 169, 0.6)' />} />
-                                        </div>
-                                    </Col>
-                                    <Col xs={12} md={3}>
-                                    </Col>
-                                </Row>
+                                <Form>
+                                    <Row>
+                                        <Col sm={12} md={5} className="my-5 ">
+                                            <h5>Change Password</h5>
+                                            <div>You must enter your current
+                                                password and then type your
+                                                new password twice.
+                                            </div>
+                                        </Col>
+                                        <Col xs={12} md={7}>
+                                        </Col>
+                                        <Col xs={12} md={3}>
+                                        </Col>
+                                        <Col xs={12} md={6}>
+                                            <div className="d-grid gap-2">
+                                                <Input name="currentPassword" type='password' placeholder='Current Password ..' className='py-3 mx-4' icon={<FaLock color='rgba(169, 169, 169, 0.6)' />} />
+                                                <Input name="newPassword" type='password' placeholder='New Password ..' className='py-3 mx-4' icon={<FaLock color='rgba(169, 169, 169, 0.6)' />} />
+                                                <Input name="confirmPassword" type='password' placeholder='Confirm Password ..' className='py-3 mx-4' icon={<FaLock color='rgba(169, 169, 169, 0.6)' />} />
+                                            </div>
+                                        </Col>
+                                        <Col xs={12} md={3}>
+                                        </Col>
+                                    </Row>
+                                </Form>
                             </Col>
                         </Row>
                     </Col>

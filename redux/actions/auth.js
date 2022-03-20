@@ -23,6 +23,14 @@ export const editProfile = (token, picture) => {
         payload: http(token, true).patch('profile', params)
     })
 }
+export const addPhone = (token, phone) => {
+    const params = new URLSearchParams()
+    params.append('number', phone)
+    return ({
+        type: 'ADD_PHONE',
+        payload: http(token).post('profile/phones', params)
+    })
+}
 export const editProfiles = (token, fullName) => {
     const params = new FormData()
     params.append('fullName', fullName)

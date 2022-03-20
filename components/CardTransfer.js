@@ -5,22 +5,24 @@ import Image from "next/image"
 const CardTransfer = ({ name, phoneNumber, photo }) => {
     return (
         <div className='d-grid'>
-            <Row>
-                <Col sm={12} md={1} className=''>
-                    <Image
-                        alt=""
-                        src={photo}
-                        width="70"
-                        height="70"
-                        className='align-center'
+            <Container className='shadow rounded-btn my-3 pt-2'>
+                <Row>
+                    <Col sm={12} md={1} className=''>
+                        <Image
+                            alt=""
+                            src={photo}
+                            width="70"
+                            height="70"
+                            className='align-center'
 
-                    />
-                </Col>
-                <Col sm={12} md={11} className='d-flex flex-column'>
-                    <div><b>{name}</b></div>
-                    <p>{phoneNumber}</p>
-                </Col>
-            </Row>
+                        />
+                    </Col>
+                    <Col sm={12} md={11} className='d-flex flex-column'>
+                        <div><b>{name}</b></div>
+                        <p>{phoneNumber}</p>
+                    </Col>
+                </Row>
+            </Container>
         </div>
     )
 }

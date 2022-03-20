@@ -48,7 +48,9 @@ function MydModalWithGrid(props) {
 export default function Home() {
     const [modalShow, setModalShow] = useState(false);
     const auth = useSelector(state => state.auth)
+    let balance = String(auth?.balance)
     const phone = auth?.phone[0]
+    // console.log(balance)
     const dispatch = useDispatch()
     useEffect(() => {
         const token = window.localStorage.getItem('token')
@@ -96,7 +98,7 @@ export default function Home() {
                                     <div className="section col-sm-12 col-md-6">
                                         <div>Balance</div>
                                         <h3>
-                                            <NumberFormat value={auth?.balance} prefix={'Rp. '} mask="." thousandSeparator={true} displayType={'text'} />
+                                            <NumberFormat value={balance} prefix={'Rp. '} mask="." thousandSeparator={true} displayType={'text'} />
                                         </h3>
                                         <div>{phone?.number}</div>
                                     </div>

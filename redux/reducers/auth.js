@@ -131,7 +131,8 @@ const auth = (state = initialState, action) => {
             state.isLoading = false
             state.error = true
             // state.errorMsg = data.error
-            // state.errMsg = data.message
+            // state.errMsg = data.messag
+        }
         case 'ADD_PHONE_PENDING': {
             state.error = []
             state.isLoading = true

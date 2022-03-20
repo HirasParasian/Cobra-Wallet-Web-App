@@ -31,7 +31,7 @@ export const editProfiles = (token, fullName) => {
         payload: http(token, true).patch('profile', params)
     })
 }
-export const ChangePassword = (token, data) => {
+export const changePassword = (token, data) => {
     const params = new URLSearchParams()
     params.append('oldPassword', data.oldPassword)
     params.append('newPassword', data.newPassword)

@@ -45,7 +45,7 @@ const SideBar = () => {
             }
         `}
             </style>
-            <Container className='shadow rounded-btn2'>
+            <Container className='shadow rounded-btn2 vh-100'>
                 <ul className="menu py-5">
                     {menu.map(item => {
                         const Icon = item.icon

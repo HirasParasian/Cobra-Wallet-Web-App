@@ -9,6 +9,8 @@ import photo from "../images/navimg.png"
 import { getBalance, getPhone, topUp } from '../redux/actions/auth'
 import { useSelector, useDispatch } from 'react-redux'
 import NumberFormat from 'react-number-format';
+import ModalSuccess from '../components/ModalSuccess'
+import ModalError from '../components/ModalError'
 function MydModalWithGrid(props) {
     const auth = useSelector(state => state.auth)
     const dispatch = useDispatch()
@@ -17,6 +19,7 @@ function MydModalWithGrid(props) {
         e.preventDefault()
         const amount = e.target.elements['amount'].value
         dispatch(topUp(token, amount))
+        dispatch(getBalance(token))
     }
     return (
 
@@ -86,6 +89,8 @@ export default function Home() {
         `}
             </style>
             <Navbar />
+            <ModalSuccess message={auth.successMsg} />
+            <ModalError message={auth.errorMsg} />
             <Container className='my-5'>
                 <Row>
                     <Col xs={12} md={3}>

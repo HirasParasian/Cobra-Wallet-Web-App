@@ -15,6 +15,18 @@ export const getProfile = (token) => {
         payload: http(token).get('profile')
     })
 }
+export const getBalance = (token) => {
+    return ({
+        type: 'GET_BALANCE',
+        payload: http(token).get('profile/balance')
+    })
+}
+export const getPhone = (token) => {
+    return ({
+        type: 'GET_PHONE',
+        payload: http(token).get('profile/phones')
+    })
+}
 export const editProfile = (token, picture) => {
     const params = new FormData()
     params.append('picture', picture)

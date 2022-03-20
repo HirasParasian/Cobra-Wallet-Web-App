@@ -1,12 +1,22 @@
+import React, { useEffect } from 'react'
 import BarChart from '../components/BarChart'
 import SideBar from '../components/SideBar'
 import Navbar from '../components/Navbar'
 import { Container, Row, Col, Nav } from 'react-bootstrap'
 import Image from "next/image"
 import photo from "../images/navimg.png"
+import { getBalance, getPhone } from '../redux/actions/auth'
+import { useSelector, useDispatch } from 'react-redux'
 
 export default function Home() {
-
+    const auth = useSelector(state => state.auth)
+    const dispatch = useDispatch()
+    useEffect(() => {
+        const token = window.localStorage.getItem('token')
+        dispatch(getBalance(token))
+        dispatch(getPhone(token))
+        // console.log()
+    }, [])
     return (
         <>
             <style jsx>
@@ -46,8 +56,8 @@ export default function Home() {
                                 <div className='col-sm-12 banner bg-color1 shadow'>
                                     <div className="section col-sm-12 col-md-6">
                                         <div>Balance</div>
-                                        <h3>Rp120.000</h3>
-                                        <div>+62 813-9387-7946</div>
+                                        <h3>Rp.{auth.balance},00</h3>
+                                        <div>{auth.phone[0].number}</div>
                                     </div>
                                     <div className='col-sm-12 col-md-6 section text-end'>
                                         <div className='mb-2'>

@@ -72,7 +72,7 @@ const Profile = () => {
                                     <Row>
                                         <Col xs={3}>
                                         </Col>
-                                        <Col xs={6} >
+                                        <Col xs={12} md={6} >
                                             <div className=' my-3'>
                                                 <Image
                                                     id="profile-image"

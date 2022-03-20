@@ -4,10 +4,13 @@ import SideBar from '../components/SideBar'
 import Navbar from '../components/Navbar'
 import CardTransfer from '../components/CardTransfer'
 import photo from "../images/navimg.png"
+import Input from '../components/Input'
+import { FaSearch } from 'react-icons/fa'
+import { getUser } from '../redux/actions/user'
+import { useSelector, useDispatch } from 'react-redux'
 
-
-
-const transfer = () => {
+const Transfer = () => {
+    const user = useSelector(state => state.user)
     return (
         <>
             <Navbar />
@@ -22,6 +25,9 @@ const transfer = () => {
                                 <div>
                                     <h4>Search Receiver</h4>
                                 </div>
+                                <div className="d-grid gap-2">
+                                    <Input name="email" type="email" placeholder='Search receiver here ..' className='py-3 my-2 mx-5' icon={<FaSearch />} />
+                                </div>
                                 <CardTransfer name={"Hiras Parasian"} photo={photo} phoneNumber={"+62 813-8898-1122"} />
                                 <CardTransfer name={"Hiras Parasian"} photo={photo} phoneNumber={"+62 813-8898-1122"} />
                                 <CardTransfer name={"Hiras Parasian"} photo={photo} phoneNumber={"+62 813-8898-1122"} />
@@ -34,4 +40,4 @@ const transfer = () => {
         </>
     )
 }
-export default transfer
+export default Transfer

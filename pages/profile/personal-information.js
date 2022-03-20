@@ -13,6 +13,7 @@ import ModalLoading from '../../components/ModalLoading'
 
 export const PersonalInformation = () => {
     const auth = useSelector(state => state.auth?.userData)
+    const tokens = useSelector(state => state.auth)
     const fullName = String(auth?.fullName)
     const name = fullName?.split(" ");
     const name2 = name?.slice(1)
@@ -43,6 +44,8 @@ export const PersonalInformation = () => {
     return (
         <>
             <Navbar />
+            <ModalSuccess message={tokens.successMsg} />
+            <ModalLoading isLoading={tokens.isLoading == true} />
             <Container className='my-5'>
                 <Row>
                     <Col xs={12} md={3}>

@@ -10,7 +10,9 @@ import { getTransaction } from '../redux/actions/user'
 const Navbars = () => {
     const auth = useSelector(state => state.auth?.userData)
     const notif = useSelector(state => state.user?.transactions)
-    console.log(notif)
+    const notifErr = useSelector(state => state.user)
+
+    console.log(notifErr.netError)
     const dispatch = useDispatch()
     useEffect(() => {
         const token = window.localStorage.getItem('token')

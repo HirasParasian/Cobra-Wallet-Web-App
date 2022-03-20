@@ -1,11 +1,12 @@
 const initialState = {
     userAll: {},
-    transactions: {},
+    transactions: [],
     isLoading: false,
     isError: false,
     errorMsg: '',
     errMsg: '',
-    successMsg: ''
+    successMsg: '',
+    netError: ''
 }
 
 const user = (state = initialState, action) => {
@@ -43,6 +44,7 @@ const user = (state = initialState, action) => {
         }
         case 'GET_TRANSACTION_REJECTED': {
             const { data } = action.payload.response
+            state.netError = action.payload
             state.isLoading = false
             state.error = true
             state.errorMsg = data.message

@@ -50,7 +50,7 @@ export const PersonalInformation = () => {
                         <Row>
                             <Col xs={12}>
                                 <Container className='shadow py-3 rounded-btn2 vh-100'>
-                                    <Form onSubmit={onEditProfile}>
+                                    <Form onSubmit={onEditProfile} className="h-100">
                                         <Row>
                                             <Col sm={12} md={5}>
                                                 <h5>Personal Information</h5>

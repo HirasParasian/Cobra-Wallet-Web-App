@@ -61,7 +61,7 @@ const SideBar = () => {
                             </li>
                         )
                     })}
-                    <li key="logout" className="mt-5 pt-5">
+                    <li key="logout" className="pt-5 mt-auto">
                         <FiLogOut className='me-3' onClick={() => { dispatch({ type: 'AUTH_LOGOUT' }); dispatch({ type: 'CLEAR_MESSAGE' }); route.push('/') }}
                             style={{ cursor: 'pointer' }} />
                         Log Out

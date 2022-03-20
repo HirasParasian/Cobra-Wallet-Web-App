@@ -3,8 +3,11 @@ import Image from "next/image"
 import { Navbar, Container } from "react-bootstrap"
 import photo from "../images/navimg.png"
 import { BsBell } from "react-icons/bs"
+import Link from 'next/link'
+import { useSelector } from 'react-redux'
 
-const test = () => {
+const Navbars = () => {
+    const auth = useSelector(state => state.auth?.userData)
     return (
         <>
             <>
@@ -16,15 +19,15 @@ const test = () => {
                         <Navbar.Brand href="/profile" className='d-flex text-align-center ms-auto'>
                             <Image
                                 alt=""
-                                src={photo}
-                                width="40"
-                                height="40"
-                                className="align-top"
+                                src={auth?.picture || photo}
+                                width="60"
+                                height="60"
+                                className="align-top rounded-btn"
                             />
                         </Navbar.Brand>
                         <Navbar.Text className='d-flex flex-column'>
-                            <a href="/profile" className=' text-decoration-none'>Robert Chandler</a>
-                            <a href="/profile" className=' text-decoration-none'>+62 8139 3877 7946</a>
+                            <p className=' text-decoration-none mt-2'>{auth?.fullName}</p>
+                            <p className=' text-decoration-none'>+62 8139 3877 7946</p>
                         </Navbar.Text>
                         <Navbar.Text className='d-flex flex-column ms-5'>
                             <BsBell size={25} color={"white"} />
@@ -34,4 +37,4 @@ const test = () => {
             </></>
     )
 }
-export default test
+export default Navbars

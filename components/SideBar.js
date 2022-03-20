@@ -7,9 +7,11 @@ import { HiPlus } from 'react-icons/hi'
 import { RiUser3Line } from 'react-icons/ri'
 import { FiLogOut } from 'react-icons/fi'
 import { Container } from 'react-bootstrap'
+import { useSelector, useDispatch } from 'react-redux'
 
 const SideBar = () => {
     const route = useRouter()
+    const dispatch = useDispatch()
     const [active, setActive] = useState('/home')
     useEffect(() => {
         setActive(route.pathname)
@@ -37,7 +39,6 @@ const SideBar = () => {
                 padding-left: 10px;
                 text-decoration: none;
                 border-left: 3px solid transparent;
-                font-size : 1.5rem;
             }
             .menu li a.active{
                 color: #03045E;
@@ -61,12 +62,9 @@ const SideBar = () => {
                         )
                     })}
                     <li key="logout" className="mt-5 pt-5">
-                        <Link href="/logout">
-                            <a>
-                                <FiLogOut className='me-3' />
-                                Log Out
-                            </a>
-                        </Link>
+                        <FiLogOut className='me-3' onClick={() => { dispatch({ type: 'AUTH_LOGOUT' }); dispatch({ type: 'CLEAR_MESSAGE' }); route.push('/') }}
+                            style={{ cursor: 'pointer' }} />
+                        Log Out
                     </li>
                 </ul>
             </Container>

@@ -3,11 +3,12 @@ import { Container, Row, Col, Image } from 'react-bootstrap'
 import SideBar from '../components/SideBar'
 import Navbar from '../components/Navbar'
 import Button from 'react-bootstrap/Button'
+import Link from 'next/link'
 import { GrLinkNext } from 'react-icons/gr'
 import { FiEdit2, FiSave } from 'react-icons/fi'
 import { getProfile, editProfile } from '../redux/actions/auth'
 import { useSelector, useDispatch } from 'react-redux'
-import Link from 'next/link'
+
 
 
 const Profile = () => {

@@ -127,6 +127,23 @@ const auth = (state = initialState, action) => {
             state.message = data.message
             return { ...state }
         }
+        case 'ADD_AMOUNT_PENDING': {
+            state.error = []
+            state.isLoading = true
+            return { ...state }
+        }
+        case 'ADD_AMOUNT_FULFILLED': {
+            const { data } = action.payload
+            state.isLoading = false
+            state.message = data.message
+            return { ...state }
+        }
+        case 'ADD_AMOUNT_REJECTED': {
+            const { data } = action.payload.response
+            state.isLoading = false
+            state.message = data.message
+            return { ...state }
+        }
         default: {
             return { ...state }
         }

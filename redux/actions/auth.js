@@ -43,6 +43,14 @@ export const addPhone = (token, phone) => {
         payload: http(token).post('profile/phones', params)
     })
 }
+export const topUp = (token, amount) => {
+    const params = new URLSearchParams()
+    params.append('amount', amount)
+    return ({
+        type: 'ADD_AMOUNT',
+        payload: http(token).post('transactions/topup', params)
+    })
+}
 export const editProfiles = (token, fullName) => {
     const params = new FormData()
     params.append('fullName', fullName)

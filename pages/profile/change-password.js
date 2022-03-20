@@ -4,11 +4,14 @@ import SideBar from '../../components/SideBar'
 import Navbar from '../../components/Navbar'
 import Input from '../../components/Input'
 import { FaLock } from 'react-icons/fa'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { changePassword } from '../../redux/actions/auth'
+import ModalSuccess from '../../components/ModalSuccess'
+import ModalLoading from '../../components/ModalLoading'
 
 const ChangePassword = () => {
     const dispatch = useDispatch()
+    const tokens = useSelector(state => state.auth)
     const onEditPassword = (e) => {
         e.preventDefault()
         const token = window.localStorage.getItem('token')
@@ -17,11 +20,15 @@ const ChangePassword = () => {
         const confirmPassword = e.target.elements['confirmPassword'].value
         const data = { oldPassword, newPassword, confirmPassword }
         dispatch(changePassword(token, data))
+        dispatch({ type: 'CLEAR_MESSAGE' });
         window.scrollTo(0, 0)
     }
     return (
         <>
             <Navbar />
+            <ModalSuccess message={tokens.successMsg} />
+            <ModalSuccess message={tokens.errMsg} />
+            <ModalLoading isLoading={tokens.isLoading == true} />
             <Container className='my-5'>
                 <Row>
                     <Col xs={12} md={3}>

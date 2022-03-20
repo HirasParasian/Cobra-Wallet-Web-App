@@ -39,6 +39,7 @@ export const PersonalInformation = () => {
         console.log(fullName)
         const token = window.localStorage.getItem('token')
         dispatch(editProfiles(token, fullName))
+        dispatch({ type: 'CLEAR_MESSAGE' });
         window.scrollTo(0, 0)
     }
     return (

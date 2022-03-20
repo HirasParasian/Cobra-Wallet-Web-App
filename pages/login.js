@@ -22,7 +22,11 @@ const Login = () => {
         const email = event.target.elements['email'].value
         const password = event.target.elements['password'].value
         dispatch(login(email, password))
-        router.push('/home')
+        dispatch({ type: 'CLEAR_MESSAGE' });
+        const token = window.localStorage.getItem('token')
+        if (auth.successMsg == "Login success") {
+            router.push('/home')
+        }
     }
     return (
         <>

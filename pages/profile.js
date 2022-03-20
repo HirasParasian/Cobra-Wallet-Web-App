@@ -57,6 +57,7 @@ const Profile = () => {
         // console.log(picture)
         const token = window.localStorage.getItem('token')
         dispatch(editProfile(token, picture))
+        dispatch({ type: 'CLEAR_MESSAGE' });
         window.scrollTo(0, 0)
     }
     return (

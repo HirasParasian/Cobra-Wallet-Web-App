@@ -11,15 +11,18 @@ import { useSelector, useDispatch } from 'react-redux'
 import NumberFormat from 'react-number-format';
 import ModalSuccess from '../components/ModalSuccess'
 import ModalError from '../components/ModalError'
+import { useRouter } from "next/router"
 function MydModalWithGrid(props) {
     const auth = useSelector(state => state.auth)
     const dispatch = useDispatch()
-    const handleSubmit2 = (e) => {
+    const router = useRouter()
+    const handleSubmit2 = async (e) => {
         const token = window.localStorage.getItem('token')
         e.preventDefault()
         const amount = e.target.elements['amount'].value
-        dispatch(topUp(token, amount))
+        await dispatch(topUp(token, amount))
         dispatch(getBalance(token))
+        router.push('/home')
     }
     return (
 

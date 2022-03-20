@@ -6,3 +6,10 @@ export const getUser = () => {
         payload: http().get('users')
     })
 }
+
+export const getTransaction = (token) => {
+    return ({
+        type: 'GET_TRANSACTION',
+        payload: http(token).get('transactions/history')
+    })
+}

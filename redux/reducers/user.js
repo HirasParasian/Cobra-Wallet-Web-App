@@ -1,5 +1,6 @@
 const initialState = {
     userAll: {},
+    transactions: {},
     isLoading: false,
     isError: false,
     errorMsg: '',
@@ -22,6 +23,25 @@ const user = (state = initialState, action) => {
 
         }
         case 'GET_USER_REJECTED': {
+            const { data } = action.payload.response
+            state.isLoading = false
+            state.error = true
+            state.errorMsg = data.message
+            return { ...state }
+        }
+        case 'GET_TRANSACTION_PENDING': {
+            state.error = false
+            state.isLoading = true
+            return { ...state }
+        }
+        case 'GET_TRANSACTION_FULFILLED': {
+            const { data } = action.payload
+            state.isLoading = false
+            state.transactions = data.results
+            return { ...state }
+
+        }
+        case 'GET_TRANSACTION_REJECTED': {
             const { data } = action.payload.response
             state.isLoading = false
             state.error = true

@@ -7,10 +7,10 @@ export const ConfirmPin = () => {
     const code = useSelector(state => state.code);
     const dispatch = useDispatch()
 
-    const handleChange = (code) => dispatch({ type: 'UPDATE_CODE', payload: { code } });
+    const handleChange = (newCode) => dispatch({ type: 'NEW_CODE', payload: { newCode } });
     return (
         <OtpInput
-            value={code.code}
+            value={code?.newCode}
             onChange={handleChange}
             numInputs={6}
             isInputNum={true}

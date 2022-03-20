@@ -10,11 +10,13 @@ import { registerUser } from "../redux/actions/signup"
 
 const Pins = () => {
     const signup = useSelector(state => state.signup)
-    const code = useSelector(state => state.code.code)
+    const code = useSelector(state => state.code)
+    console.log(code?.code)
+    console.log(signup?.userData)
     const router = useRouter()
     const dispatch = useDispatch()
     useEffect(() => {
-        if (code.length < 6) {
+        if (code?.code.length < 6) {
             document.getElementById("confirm").disabled = true;
         } else {
             document.getElementById("confirm").disabled = false;
@@ -23,8 +25,7 @@ const Pins = () => {
 
     const onSubmit = async (e) => {
         e.preventDefault()
-        dispatch({ type: 'ADD_CODE', payload: { code: code } })
-        await dispatch(registerUser(signup.userData))
+        await dispatch(registerUser(signup.userData, code?.code))
     }
 
     const goToLogin = () => {

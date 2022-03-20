@@ -69,3 +69,35 @@ export const changePassword = (token, data) => {
         payload: http(token).patch('profile/change-password', params)
     })
 }
+export const changePin = (token, data) => {
+    const params = new URLSearchParams()
+    params.append('oldPin', data.oldPin)
+    params.append('newPin', data.newPin)
+    return ({
+        type: 'CHANGE_PIN',
+        payload: http(token).patch('profile/change-pin', params)
+    })
+}
+
+// export const DataPin = (data) => {
+//     const userData = {}
+//     let error = []
+//     userData.oldPin = data.oldPin
+//     return {
+//         type: 'DATA_PIN',
+//         payload: {
+//             userData,
+//             error,
+//         }
+//     }
+// }
+export const registerUser = (token, data) => {
+    const userData = new URLSearchParams()
+    for (const key in data) {
+        userData.append(key, data[key]);
+    }
+    return {
+        type: 'CHANGE_PIN',
+        payload: http(token).patch('profile/change-password', userData)
+    }
+}

@@ -10,7 +10,8 @@ import { registerUser } from "../redux/actions/signup"
 
 const Pins = () => {
     const signup = useSelector(state => state.signup)
-    const code = useSelector(state => state.code.code)
+    const code = useSelector(state => state.code)
+    console.log(code)
     const router = useRouter()
     const dispatch = useDispatch()
     useEffect(() => {
@@ -23,8 +24,7 @@ const Pins = () => {
 
     const onSubmit = async (e) => {
         e.preventDefault()
-        dispatch({ type: 'ADD_CODE', payload: { code: code } })
-        await dispatch(registerUser(signup.userData))
+        await dispatch(registerUser(signup.userData, code?.code))
     }
 
     const goToLogin = () => {

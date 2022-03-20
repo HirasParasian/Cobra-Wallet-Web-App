@@ -1,9 +1,6 @@
 const initialState = {
     token: null,
     userData: {},
-    email: "",
-    fullname: "",
-    password: "",
     isLoading: false,
     isError: false,
     errorMsg: '',
@@ -42,7 +39,7 @@ const signup = (state = initialState, action) => {
             return { ...state }
         }
         case 'ADD_CODE': {
-            state.userData.code = action.payload.code
+            state.userData.code = action.payload.userData
             return { ...state }
         }
         default: {

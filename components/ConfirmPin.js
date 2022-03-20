@@ -3,9 +3,10 @@ import OtpInput from 'react-otp-input'
 import { useDispatch, useSelector } from 'react-redux';
 // import Style from "../components/Pin.module.css   "
 
-export const Pin = () => {
+export const ConfirmPin = () => {
     const code = useSelector(state => state.code);
     const dispatch = useDispatch()
+
     const handleChange = (code) => dispatch({ type: 'UPDATE_CODE', payload: { code } });
     return (
         <OtpInput
@@ -19,4 +20,4 @@ export const Pin = () => {
         />
     )
 }
-export default Pin
+export default ConfirmPin

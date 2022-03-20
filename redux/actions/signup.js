@@ -15,11 +15,13 @@ export const DataRegister = (data) => {
     }
 }
 
-export const registerUser = (data) => {
+export const registerUser = (data, code) => {
     const userData = new URLSearchParams()
-    for (const key in data) {
-        userData.append(key, data[key]);
-    }
+    userData.append('pin', code)
+    userData.append('fullName', data.fullName)
+    userData.append('email', data.email)
+    userData.append('password', data.password)
+
     return {
         type: 'USER_SIGNUP',
         payload: http().post('/auth/register', userData)

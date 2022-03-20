@@ -9,9 +9,12 @@ import Pin from '../../components/ConfirmPin'
 import { useSelector } from "react-redux"
 import { useRouter } from "next/router"
 import { changePin } from '../../redux/actions/auth'
+import ModalSuccess from '../../components/ModalSuccess'
+import ModalLoading from '../../components/ModalLoading'
 
 const ChangePin = () => {
     const router = useRouter()
+    const tokens = useSelector(state => state.auth)
     const code = useSelector(state => state.code)
     console.log(code)
     useEffect(() => {
@@ -29,11 +32,14 @@ const ChangePin = () => {
         const newPin = code?.newCode
         const data = { oldPin, newPin }
         dispatch(changePin(token, data))
+        dispatch({ type: 'CLEAR_MESSAGE' });
         window.scrollTo(0, 0)
     }
     return (
         <>
             <Navbar />
+            <ModalSuccess message={tokens.successMsg} />
+            <ModalLoading isLoading={tokens.isLoading == true} />
             <Container className='my-5'>
                 <Row>
                     <Col xs={12} md={3}>
@@ -46,7 +52,7 @@ const ChangePin = () => {
                                     <Form onSubmit={onEditPin}>
                                         <Row>
                                             <Col sm={12} md={5} className="my-5 ">
-                                                <h5>Change Pin</h5>
+                                                <h5>Confirm Pin</h5>
                                                 <div>Enter your current 6 digits
                                                     Zwallet PIN below to continue
                                                     to the next steps.

@@ -8,6 +8,7 @@ import { useEffect, useState } from "react"
 import { useRouter } from "next/router"
 import { registerUser } from "../redux/actions/signup"
 
+
 const Pins = () => {
     const signup = useSelector(state => state.signup)
     const code = useSelector(state => state.code)

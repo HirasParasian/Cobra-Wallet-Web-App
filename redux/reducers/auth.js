@@ -142,10 +142,7 @@ const auth = (state = initialState, action) => {
         case 'CHANGE_PIN_FULFILLED': {
             const { data } = action.payload
             state.isLoading = false
-            state.message = data.message
-            // state.successMsg = data.message
-            // state.errorMsg = ""
-            // state.errMsg = ""
+            state.successMsg = data.message
             return { ...state }
 
         }
@@ -153,8 +150,8 @@ const auth = (state = initialState, action) => {
             const { data } = action.payload.response
             state.isLoading = false
             state.error = true
-            // state.errorMsg = data.error
-            // state.errMsg = data.messag
+            state.successMsg = data.message
+            return { ...state }
         }
         case 'ADD_PHONE_PENDING': {
             state.error = []

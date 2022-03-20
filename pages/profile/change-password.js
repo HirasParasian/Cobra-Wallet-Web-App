@@ -31,6 +31,7 @@ const ChangePassword = () => {
                         <Row>
                             <Col xs={12}>
                                 <Form onSubmit={onEditPassword}>
+                                <Container className='shadow pb-3 rounded-btn2 vh-100'>
                                     <Row>
                                         <Col sm={12} md={5} className="my-5 ">
                                             <h5>Change Password</h5>
@@ -59,6 +60,7 @@ const ChangePassword = () => {
                                         </Col>
                                     </Row>
                                 </Form>
+                                </Container>
                             </Col>
                         </Row>
                     </Col>

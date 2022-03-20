@@ -15,12 +15,40 @@ export const getProfile = (token) => {
         payload: http(token).get('profile')
     })
 }
+export const getBalance = (token) => {
+    return ({
+        type: 'GET_BALANCE',
+        payload: http(token).get('profile/balance')
+    })
+}
+export const getPhone = (token) => {
+    return ({
+        type: 'GET_PHONE',
+        payload: http(token).get('profile/phones')
+    })
+}
 export const editProfile = (token, picture) => {
     const params = new FormData()
     params.append('picture', picture)
     return ({
         type: 'EDIT_PROFILE',
         payload: http(token, true).patch('profile', params)
+    })
+}
+export const addPhone = (token, phone) => {
+    const params = new URLSearchParams()
+    params.append('number', phone)
+    return ({
+        type: 'ADD_PHONE',
+        payload: http(token).post('profile/phones', params)
+    })
+}
+export const topUp = (token, amount) => {
+    const params = new URLSearchParams()
+    params.append('amount', amount)
+    return ({
+        type: 'ADD_AMOUNT',
+        payload: http(token).post('transactions/topup', params)
     })
 }
 export const editProfiles = (token, fullName) => {

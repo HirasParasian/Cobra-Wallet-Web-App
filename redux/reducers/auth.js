@@ -1,6 +1,8 @@
 const initialState = {
     token: [],
     userData: {},
+    balance: [],
+    phone: [],
     isLoading: false,
     isError: false,
     errorMsg: '',
@@ -64,6 +66,44 @@ const auth = (state = initialState, action) => {
             state.errorMsg = data.message
             return { ...state }
         }
+        case 'GET_BALANCE_PENDING': {
+            state.error = false
+            state.isLoading = true
+            return { ...state }
+        }
+        case 'GET_BALANCE_FULFILLED': {
+            const { data } = action.payload
+            state.isLoading = false
+            state.balance = data.results
+            return { ...state }
+
+        }
+        case 'GET_BALANCE_REJECTED': {
+            const { data } = action.payload.response
+            state.isLoading = false
+            state.error = true
+            state.errorMsg = data.message
+            return { ...state }
+        }
+        case 'GET_PHONE_PENDING': {
+            state.error = false
+            state.isLoading = true
+            return { ...state }
+        }
+        case 'GET_PHONE_FULFILLED': {
+            const { data } = action.payload
+            state.isLoading = false
+            state.phone = data.results
+            return { ...state }
+
+        }
+        case 'GET_PHONE_REJECTED': {
+            const { data } = action.payload.response
+            state.isLoading = false
+            state.error = true
+            state.errorMsg = data.message
+            return { ...state }
+        }
         case 'CLEAR_MESSAGE': {
             state.errorMsg = ""
             state.errMsg = ""
@@ -92,6 +132,38 @@ const auth = (state = initialState, action) => {
             state.error = true
             // state.errorMsg = data.error
             // state.errMsg = data.message
+        case 'ADD_PHONE_PENDING': {
+            state.error = []
+            state.isLoading = true
+            return { ...state }
+        }
+        case 'ADD_PHONE_FULFILLED': {
+            const { data } = action.payload
+            state.isLoading = false
+            state.message = data.message
+            return { ...state }
+        }
+        case 'ADD_PHONE_REJECTED': {
+            const { data } = action.payload.response
+            state.isLoading = false
+            state.message = data.message
+            return { ...state }
+        }
+        case 'ADD_AMOUNT_PENDING': {
+            state.error = []
+            state.isLoading = true
+            return { ...state }
+        }
+        case 'ADD_AMOUNT_FULFILLED': {
+            const { data } = action.payload
+            state.isLoading = false
+            state.message = data.message
+            return { ...state }
+        }
+        case 'ADD_AMOUNT_REJECTED': {
+            const { data } = action.payload.response
+            state.isLoading = false
+            state.message = data.message
             return { ...state }
         }
         default: {

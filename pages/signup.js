@@ -28,9 +28,7 @@ const Signup = () => {
             password: e.target.elements['password'].value,
         }
         dispatch(DataRegister(data))
-
         router.push('/pin')
-
     }
 
 

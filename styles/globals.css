@@ -61,3 +61,14 @@ a {
 .nav-pills .nav-link.active, .nav-pills .show>.nav-link{
   background-color: #FF9292;
 }
+.PhoneInputInput{
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  border-bottom: 1.5px solid rgba(169, 169, 169, 0.6);
+  padding: 0.7rem 3px;
+}
+.PhoneInput:focus{
+  border: 0;
+  outline: 0cm;
+}

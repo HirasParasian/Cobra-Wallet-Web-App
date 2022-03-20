@@ -1,12 +1,61 @@
+import React, { useEffect, useState } from 'react'
 import BarChart from '../components/BarChart'
 import SideBar from '../components/SideBar'
 import Navbar from '../components/Navbar'
-import { Container, Row, Col, Nav } from 'react-bootstrap'
+import Input from '../components/WInput'
+import { Container, Row, Col, Nav, Modal, Button, Form } from 'react-bootstrap'
 import Image from "next/image"
 import photo from "../images/navimg.png"
+import { getBalance, getPhone, topUp } from '../redux/actions/auth'
+import { useSelector, useDispatch } from 'react-redux'
+import NumberFormat from 'react-number-format';
+function MydModalWithGrid(props) {
+    const auth = useSelector(state => state.auth)
+    const dispatch = useDispatch()
+    const handleSubmit2 = (e) => {
+        const token = window.localStorage.getItem('token')
+        e.preventDefault()
+        const amount = e.target.elements['amount'].value
+        dispatch(topUp(token, amount))
+    }
+    return (
 
+        <Modal {...props} aria-labelledby="contained-modal-title-vcenter">
+            <Modal.Header className='border-0' closeButton>
+                <div><h5>Top Up</h5></div>
+            </Modal.Header>
+
+            <Modal.Body className="show-grid">
+                <Form onSubmit={handleSubmit2}>
+                    <div className='mb-5'>Enter the amount of money, and click submit</div>
+                    <Container>
+                        <Row>
+                            <Col xs={12}>
+                                <div className="d-grid gap-2">
+                                    <Input name="amount" type="number" className=' py-3 my-2 mx-5' />
+                                </div>
+                            </Col>
+                        </Row>
+                        <Button className='bg-color1 text-light' type="submit">Submit</Button>
+                    </Container>
+
+                </Form>
+            </Modal.Body>
+        </Modal>
+
+    );
+}
 export default function Home() {
-
+    const [modalShow, setModalShow] = useState(false);
+    const auth = useSelector(state => state.auth)
+    const phone = auth?.phone[0]
+    const dispatch = useDispatch()
+    useEffect(() => {
+        const token = window.localStorage.getItem('token')
+        dispatch(getBalance(token))
+        dispatch(getPhone(token))
+        // console.log()
+    }, [])
     return (
         <>
             <style jsx>
@@ -46,16 +95,19 @@ export default function Home() {
                                 <div className='col-sm-12 banner bg-color1 shadow'>
                                     <div className="section col-sm-12 col-md-6">
                                         <div>Balance</div>
-                                        <h3>Rp120.000</h3>
-                                        <div>+62 813-9387-7946</div>
+                                        <h3>
+                                            <NumberFormat value={auth?.balance} prefix={'Rp. '} mask="." thousandSeparator={true} displayType={'text'} />
+                                        </h3>
+                                        <div>{phone?.number}</div>
                                     </div>
                                     <div className='col-sm-12 col-md-6 section text-end'>
                                         <div className='mb-2'>
                                             <button className='button'>Transfer</button>
                                         </div>
                                         <div>
-                                            <button className='button'>Topup</button>
+                                            <button onClick={() => setModalShow(true)} className='button'>Topup</button>
                                         </div>
+                                        <MydModalWithGrid show={modalShow} onHide={() => setModalShow(false)} />
                                     </div>
                                 </div>
                             </Col>

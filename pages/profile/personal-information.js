@@ -49,7 +49,7 @@ export const PersonalInformation = () => {
                     <Col>
                         <Row>
                             <Col xs={12}>
-                                <Container className='shadow py-3 rounded-btn2'>
+                                <Container className='shadow py-3 rounded-btn2 vh-100'>
                                     <Form onSubmit={onEditProfile}>
                                         <Row>
                                             <Col sm={12} md={5}>

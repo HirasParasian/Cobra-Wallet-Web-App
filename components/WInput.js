@@ -4,9 +4,9 @@ import { FormControl, InputGroup } from 'react-bootstrap'
 const WInput = ({ icon, name, placeholder, type, variant = 'underline', required = false, ...rest }) => {
     return (
         <InputGroup className="mb-3 underline">
-            <InputGroup.Text className='border-0 py-3 bg-transparent' id={name}>{icon}</InputGroup.Text>
+            <InputGroup.Text className=' py-3 border-end-0 bg-transparent' id={name}>{icon}</InputGroup.Text>
             <FormControl
-                className='underline border-0 bg-transparent'
+                className='underline bg-transparent border-start-0'
                 placeholder={placeholder}
                 aria-label={name}
                 type={type}

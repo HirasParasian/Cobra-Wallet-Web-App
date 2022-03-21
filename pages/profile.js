@@ -10,10 +10,11 @@ import { getProfile, editProfile } from '../redux/actions/auth'
 import { useSelector, useDispatch } from 'react-redux'
 import ModalSuccess from '../components/ModalSuccess'
 import ModalLoading from '../components/ModalLoading'
-
+import { useRouter } from "next/router"
 
 
 const Profile = () => {
+    const router = useRouter()
     const auth = useSelector(state => state.auth?.userData)
     const hiddenFileInput = useRef(null)
     const tokens = useSelector(state => state.auth)
@@ -28,7 +29,7 @@ const Profile = () => {
                 dispatch({ type: 'CLEAR_MESSAGE' });
             } else {
                 window.alert('Please login first')
-                navigate('/login')
+                router.push('/login')
             }
         }
     }, [])
@@ -125,11 +126,11 @@ const Profile = () => {
                                                 </Link>
                                             </div>
                                             <div className="d-grid gap-2">
-                                                <Link href={'/logout'} passHref>
-                                                    <Button style={{ alignItems: "center" }} type="submit" variant="color6" className='btn mx-5 py-3 my-2 rounded-btn2 bg-color6 border-0 text-dark btn-secondary d-flex justify-content-between' size="lg">
-                                                        <h5>Logout</h5> <GrLinkNext />
-                                                    </Button>
-                                                </Link>
+
+                                                <Button onClick={() => { dispatch({ type: 'AUTH_LOGOUT' }); dispatch({ type: 'CLEAR_MESSAGE' }); }} style={{ alignItems: "center" }} type="submit" variant="color6" className='btn mx-5 py-3 my-2 rounded-btn2 bg-color6 border-0 text-dark btn-secondary d-flex justify-content-between' size="lg">
+                                                    <h5>Logout</h5> <GrLinkNext />
+                                                </Button>
+
                                             </div>
                                         </Col>
                                         <Col xs={3}>

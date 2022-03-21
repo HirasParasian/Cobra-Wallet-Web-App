@@ -18,13 +18,13 @@ const signup = (state = initialState, action) => {
         case 'USER_SIGNUP_FULFILLED': {
             const { data } = action.payload
             state.isLoading = false
-            state.message = data.message
+            state.successMsg = data.message
             return { ...state }
         }
         case 'USER_SIGNUP_REJECTED': {
             const { data } = action.payload
             state.isLoading = false
-            state.message = data.message
+            state.successMsg = data.message
             return { ...state }
         }
         case 'DATA_REGISTER': {

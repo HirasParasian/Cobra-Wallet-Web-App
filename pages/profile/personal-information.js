@@ -103,7 +103,7 @@ export const PersonalInformation = () => {
                                                 </InputGroup>
                                             </Col>
                                             <Col sm={12} md={4} style={{ alignItems: "center" }} className='d-flex justify-content-center align-item-center'>
-                                                <Link href="/profile/personal-information/manage-phone">
+                                                <Link href="/profile/add-phone">
                                                     <a className='text-decoration-none'> Manage </a>
                                                 </Link>
                                             </Col>

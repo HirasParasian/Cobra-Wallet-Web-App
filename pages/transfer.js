@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Container, Row, Col } from 'react-bootstrap'
+import { Container, Row, Col, Image } from 'react-bootstrap'
 import SideBar from '../components/SideBar'
 import Navbar from '../components/Navbar'
 import CardTransfer from '../components/CardTransfer'
@@ -8,9 +8,13 @@ import Input from '../components/Input'
 import { FaSearch } from 'react-icons/fa'
 import { getUser } from '../redux/actions/user'
 import { useSelector, useDispatch } from 'react-redux'
+import { getListUser, setRecepientDetail } from '../redux/actions/user';
 import http from '../helpers/http'
+import { useRouter } from 'next/router';
 
 const Transfer = () => {
+    const router = useRouter()
+    const dispatch = useDispatch()
     const user = useSelector(state => state.user)
     const [users, setUsers] = useState([])
     const [errorMsg, setErrorMsg] = useState(null)
@@ -25,8 +29,10 @@ const Transfer = () => {
         setUsers(data?.results)
         console.log(data)
     }
-    const goToDetail = (id) => {
-        route.push(`/transfer/input-amount/${id}`)
+    const transferTo = (recepientId) => {
+        const userDetail = users.find(el => el.id === recepientId)
+        dispatch(setRecepientDetail(userDetail))
+        router.push(`/transfer/${userDetail.id}`)
     }
     return (
         <>
@@ -47,7 +53,30 @@ const Transfer = () => {
                                 </div>
                                 {users?.map((data, idx) => {
                                     return (
-                                        <CardTransfer onClick={() => goToDetail(data?.id)} style={{ cursor: 'pointer' }} key={String(idx)} name={data?.fullName} photo={data?.picture || photo} phoneNumber={""} />
+                                        <>
+                                            <div className='d-grid' key={String(data.id)}>
+                                                <Container className='shadow rounded-btn my-3 pt-2'>
+                                                    <Row>
+                                                        <Col sm={12} md={1} className=''>
+                                                            <Image
+                                                                alt=""
+                                                                src={data?.picture || photo}
+                                                                width="70"
+                                                                height="70"
+                                                                className='align-center'
+                                                                onClick={() => transferTo(data.id)}
+                                                            />
+                                                        </Col>
+                                                        <Col sm={12} md={11} className='d-flex flex-column'>
+                                                            <div><b>{data?.fullName}</b></div>
+                                                            <p>{""}</p>
+                                                        </Col>
+                                                    </Row>
+                                                </Container>
+                                            </div>
+                                            {/* <CardTransfer style={{ cursor: 'pointer' }} key={String(data.id)} name={data?.fullName} photo={data?.picture || photo} phoneNumber={""} />
+                                            <button >Click</button> */}
+                                        </>
                                     )
                                 })}
                             </Col>

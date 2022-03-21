@@ -12,21 +12,16 @@ import http from '../../helpers/http'
 import CurrencyInput from 'react-currency-input-field';
 import Button from 'react-bootstrap/Button'
 import Link from 'next/link'
+import { useRouter } from "next/router";
 
 const Transfer = () => {
-    // const user = useSelector(state => state.user)
-    // const [users, setUsers] = useState([])
-    // const [errorMsg, setErrorMsg] = useState(null)
+    const router = useRouter();
+    const dispatch = useDispatch();
+    const auth = useSelector(state => state.auth?.balance)
+    console.log(auth)
+    const user = useSelector(state => state.user);
+    const { recepientDetail } = user
 
-    // useEffect(() => {
-    //     getUserSearch(`users`)
-    // }, [])
-
-    // const getUserSearch = async (url) => {
-    //     const token = window.localStorage.getItem('token')
-    //     const { data } = await http(token).get(url)
-    //     setUsers(data?.results)
-    // }
     return (
         <>
             <Navbar />
@@ -41,11 +36,7 @@ const Transfer = () => {
                                 <div>
                                     <h4>Transfer Money</h4>
                                 </div>
-                                {/* {users?.map((data, idx) => {
-                                    return (
-                                        <CardTransfer key={String(idx)} name={data?.fullName} photo={data?.picture || photo} phoneNumber={""} />
-                                    )
-                                })} */}
+                                <CardTransfer name={recepientDetail?.fullName} photo={recepientDetail?.picture || photo} phoneNumber={""} />
                                 <div>
                                     Type the amount you want to transfer and then
                                     press continue to the next steps.

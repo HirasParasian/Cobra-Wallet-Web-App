@@ -1,5 +1,5 @@
 const initialState = {
-    userAll: {},
+    userAll: [],
     transactions: [],
     isLoading: false,
     isError: false,
@@ -48,6 +48,10 @@ const user = (state = initialState, action) => {
             state.isLoading = false
             state.error = true
             state.errorMsg = data.message
+            return { ...state }
+        }
+        case 'SET_RECEPIENT_DETAIL': {
+            state.recepientDetail = action.payload
             return { ...state }
         }
         default: {

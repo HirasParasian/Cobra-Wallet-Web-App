@@ -7,6 +7,9 @@ import { useDispatch, useSelector } from "react-redux"
 import { useEffect, useState } from "react"
 import { useRouter } from "next/router"
 import { registerUser } from "../redux/actions/signup"
+import ModalSuccess from '../components/ModalSuccess'
+import ModalError from '../components/ModalError'
+import ModalLoading from '../components/ModalLoading'
 
 
 const Pins = () => {
@@ -26,7 +29,9 @@ const Pins = () => {
 
     const onSubmit = async (e) => {
         e.preventDefault()
+        dispatch({ type: 'CLEAR_MESSAGE' });
         await dispatch(registerUser(signup.userData, code?.code))
+        dispatch({ type: 'CLEAR_MESSAGE' });
     }
 
     const goToLogin = () => {
@@ -35,6 +40,7 @@ const Pins = () => {
     }
     return (
         <>
+
             <Container>
                 <Row>
                     <Col sm={12} md={7} className="bg-color1">

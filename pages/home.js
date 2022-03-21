@@ -6,7 +6,7 @@ import Input from '../components/WInput'
 import { Container, Row, Col, Nav, Modal, Button, Form } from 'react-bootstrap'
 import Image from "next/image"
 import photo from "../images/navimg.png"
-import { getBalance, getPhone, topUp } from '../redux/actions/auth'
+import { getBalance, getPhone, topUp, getProfile } from '../redux/actions/auth'
 import { useSelector, useDispatch } from 'react-redux'
 import NumberFormat from 'react-number-format';
 import ModalSuccess from '../components/ModalSuccess'
@@ -65,6 +65,19 @@ export default function Home() {
         dispatch(getBalance(token))
         dispatch(getPhone(token))
         // console.log()
+    }, [])
+    useEffect(() => {
+        if (!auth.token) {
+            const token = window.localStorage.getItem('token')
+            if (token) {
+                dispatch(getProfile(token))
+                dispatch(getTransaction(token))
+                dispatch({ type: 'CLEAR_MESSAGE' });
+            } else {
+                window.alert('Please login first')
+                router.push('/login')
+            }
+        }
     }, [])
     return (
         <>

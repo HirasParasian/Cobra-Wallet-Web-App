@@ -10,8 +10,10 @@ import Button from 'react-bootstrap/Button'
 import { FiSave } from 'react-icons/fi'
 import ModalSuccess from '../../components/ModalSuccess'
 import ModalLoading from '../../components/ModalLoading'
+import { useRouter } from "next/router"
 
 export const PersonalInformation = () => {
+    const router = useRouter()
     const auth = useSelector(state => state.auth?.userData)
     const tokens = useSelector(state => state.auth)
     const fullName = String(auth?.fullName)
@@ -26,7 +28,7 @@ export const PersonalInformation = () => {
                 dispatch({ type: 'CLEAR_MESSAGE' });
             } else {
                 window.alert('Please login first')
-                navigate('/login')
+                router.push('/login')
             }
         }
     }, [])
@@ -48,6 +50,14 @@ export const PersonalInformation = () => {
             <ModalSuccess message={tokens.successMsg} />
             <ModalLoading isLoading={tokens.isLoading == true} />
             <Container className='my-5'>
+                <button type="button" className="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-sm">UNAUTHORIZE</button>
+                <div className="modal fade bd-example-modal-sm" tabIndex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                    <div className="modal-dialog modal-sm">
+                        <div className="modal-content">
+                            ...
+                        </div>
+                    </div>
+                </div>
                 <Row>
                     <Col xs={12} md={3}>
                         <SideBar />

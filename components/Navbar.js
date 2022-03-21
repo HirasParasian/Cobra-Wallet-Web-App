@@ -6,10 +6,13 @@ import { BsBell } from "react-icons/bs"
 import { AiOutlineArrowDown, AiOutlineArrowUp } from 'react-icons/ai'
 import { useSelector, useDispatch } from 'react-redux'
 import { getTransaction } from '../redux/actions/user'
+import { getProfile } from '../redux/actions/auth'
 
 const Navbars = () => {
     const auth = useSelector(state => state.auth?.userData)
     const notif = useSelector(state => state.user?.transactions)
+    const phone = useSelector(state => state.auth?.phone)
+    // console.log(phone[0].number)
     const notifErr = useSelector(state => state.user)
 
     console.log(notifErr.netError)
@@ -17,6 +20,7 @@ const Navbars = () => {
     useEffect(() => {
         const token = window.localStorage.getItem('token')
         dispatch(getTransaction(token))
+        dispatch(getProfile(token))
     }, [])
     const [showB, setShowB] = useState(false);
     const toggleShowB = () => setShowB(!showB);
@@ -39,7 +43,7 @@ const Navbars = () => {
                         </Navbar.Brand>
                         <Navbar.Text className='d-flex flex-column'>
                             <p className=' text-decoration-none mt-2'>{auth?.fullName}</p>
-                            <p className=' text-decoration-none'>+62 8139 3877 7946</p>
+                            <p className=' text-decoration-none'>{phone[0].number}</p>
                         </Navbar.Text>
                         <Navbar.Text className='d-flex flex-column ms-5'>
                             <BsBell onClick={toggleShowB} size={25} color={"white"} />
@@ -53,7 +57,7 @@ const Navbars = () => {
                                 {notif?.map((data, idx) => {
                                     return (
                                         <>
-                                            <Row className='px-3 mx-2 my-3 rounded-btn-2 shadow-sm'>
+                                            <Row key={String(idx)} className='px-3 mx-2 my-3 rounded-btn-2 shadow-sm'>
                                                 <Col xs={3}>
                                                     {data?.mutation_type.id == 1 && <AiOutlineArrowDown size={30} color="green" />}
                                                     {data?.mutation_type.id == 2 && <AiOutlineArrowDown size={30} color="red" />}

@@ -126,11 +126,9 @@ const Profile = () => {
                                                 </Link>
                                             </div>
                                             <div className="d-grid gap-2">
-
-                                                <Button onClick={() => { dispatch({ type: 'AUTH_LOGOUT' }); dispatch({ type: 'CLEAR_MESSAGE' }); }} style={{ alignItems: "center" }} type="submit" variant="color6" className='btn mx-5 py-3 my-2 rounded-btn2 bg-color6 border-0 text-dark btn-secondary d-flex justify-content-between' size="lg">
+                                                <Button onClick={() => { dispatch({ type: 'AUTH_LOGOUT' }); dispatch({ type: 'CLEAR_MESSAGE' }); router.push('/login') }} style={{ alignItems: "center" }} type="submit" variant="color6" className='btn mx-5 py-3 my-2 rounded-btn2 bg-color6 border-0 text-dark btn-secondary d-flex justify-content-between' size="lg">
                                                     <h5>Logout</h5> <GrLinkNext />
                                                 </Button>
-
                                             </div>
                                         </Col>
                                         <Col xs={3}>

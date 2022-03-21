@@ -14,6 +14,7 @@ import { useRouter } from "next/router"
 
 const Login = () => {
     const auth = useSelector(state => state.auth)
+    console.log(auth)
     const dispatch = useDispatch()
     const router = useRouter()
 
@@ -22,11 +23,10 @@ const Login = () => {
         const email = event.target.elements['email'].value
         const password = event.target.elements['password'].value
         dispatch(login(email, password))
-        dispatch({ type: 'CLEAR_MESSAGE' });
-        const token = window.localStorage.getItem('token')
-        if (auth.successMsg == "Login success") {
+        if (auth.isError == false) {
             router.push('/home')
         }
+        dispatch({ type: 'CLEAR_MESSAGE' });
     }
     return (
         <>

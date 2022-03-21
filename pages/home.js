@@ -12,6 +12,7 @@ import NumberFormat from 'react-number-format';
 import ModalSuccess from '../components/ModalSuccess'
 import ModalError from '../components/ModalError'
 import { useRouter } from "next/router"
+import { AiOutlineArrowDown, AiOutlineArrowUp } from 'react-icons/ai'
 function MydModalWithGrid(props) {
     const auth = useSelector(state => state.auth)
     const dispatch = useDispatch()
@@ -53,6 +54,7 @@ function MydModalWithGrid(props) {
 }
 export default function Home() {
     const [modalShow, setModalShow] = useState(false);
+    const notif = useSelector(state => state.user?.transactions)
     const auth = useSelector(state => state.auth)
     let balance = String(auth?.balance)
     const phone = auth?.phone[0]
@@ -125,65 +127,23 @@ export default function Home() {
                                 <BarChart data={[10, 50, 200, 300]} labels={['1', '2', '3', '4']} income={0} expense={0} />
                             </Col>
                             <Col xs={12} md={5}>
-                                <Container className='shadow rounded-btn2 my-3'>
-                                    <div className='d-flex justify-content-between'>
-                                        <h5>Transaction History</h5>
-                                        <div>See All</div>
-                                    </div>
-                                    <Row className='mt-5 mb-3'>
-                                        <Col sm={12} md={4} className=''>
-                                            <Image
-                                                alt=""
-                                                src={photo}
-                                                width="70"
-                                                height="70"
-                                                className='align-center'
-
-                                            />
-                                        </Col>
-                                        <Col sm={12} md={4} className='d-flex flex-column'>
-                                            <div><b>Samuel Suhi</b></div>
-                                            <p>Accept</p>
-                                        </Col>
-                                        <Col sm={12} md={4} className='mt-2'>
-                                            <div className='text-success'><b>+Rp50.000</b></div>
-                                        </Col>
-                                        <Col sm={12} md={4} className=''>
-                                            <Image
-                                                alt=""
-                                                src={photo}
-                                                width="70"
-                                                height="70"
-                                                className='align-center'
-
-                                            />
-                                        </Col>
-                                        <Col sm={12} md={4} className='d-flex flex-column'>
-                                            <div><b>Samuel Suhi</b></div>
-                                            <p>Accept</p>
-                                        </Col>
-                                        <Col sm={12} md={4} className='mt-2'>
-                                            <div className='text-success'><b>+Rp50.000</b></div>
-                                        </Col>
-                                        <Col sm={12} md={4} className=''>
-                                            <Image
-                                                alt=""
-                                                src={photo}
-                                                width="70"
-                                                height="70"
-                                                className='align-center'
-
-                                            />
-                                        </Col>
-                                        <Col sm={12} md={4} className='d-flex flex-column'>
-                                            <div><b>Samuel Suhi</b></div>
-                                            <p>Accept</p>
-                                        </Col>
-                                        <Col sm={12} md={4} className='mt-2'>
-                                            <div className='text-success'><b>+Rp50.000</b></div>
-                                        </Col>
-                                    </Row>
-                                </Container>
+                                {notif?.map((data, idx) => {
+                                    return (
+                                        <>
+                                            <Row className='px-3 mx-2 my-3 rounded-btn-2 shadow-sm'>
+                                                <Col xs={3}>
+                                                    {data?.mutation_type.id == 1 && <AiOutlineArrowDown size={30} color="green" />}
+                                                    {data?.mutation_type.id == 2 && <AiOutlineArrowDown size={30} color="red" />}
+                                                    {data?.mutation_type.id == 3 && <AiOutlineArrowUp size={30} color="red" />}
+                                                </Col>
+                                                <Col xs={9} classNam="d-flex flex-column">
+                                                    <h5>{data?.amount}</h5>
+                                                    <h5>{data?.mutation_type.name}</h5>
+                                                </Col>`
+                                            </Row>
+                                        </>
+                                    )
+                                })}
                             </Col>
                         </Row>
                     </Col>

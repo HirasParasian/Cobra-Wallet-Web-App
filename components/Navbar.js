@@ -12,7 +12,8 @@ const Navbars = () => {
     const auth = useSelector(state => state.auth?.userData)
     const notif = useSelector(state => state.user?.transactions)
     const phone = useSelector(state => state.auth?.phone)
-    // console.log(phone[0].number)
+    const myphone = phone[0]?.number
+    // console.log()
     const notifErr = useSelector(state => state.user)
 
     console.log(notifErr.netError)
@@ -43,7 +44,7 @@ const Navbars = () => {
                         </Navbar.Brand>
                         <Navbar.Text className='d-flex flex-column'>
                             <p className=' text-decoration-none mt-2'>{auth?.fullName}</p>
-                            <p className=' text-decoration-none'>{phone[0].number}</p>
+                            <p className=' text-decoration-none'>{phone[0]?.number}</p>
                         </Navbar.Text>
                         <Navbar.Text className='d-flex flex-column ms-5'>
                             <BsBell onClick={toggleShowB} size={25} color={"white"} />

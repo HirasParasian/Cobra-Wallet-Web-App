@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { Container, Row, Col, InputGroup, FormControl } from 'react-bootstrap'
+import { Container, Row, Col, InputGroup, FormControl, Modal, Form } from 'react-bootstrap'
 import SideBar from '../../components/SideBar'
 import Navbar from '../../components/Navbar'
-import CardTransfer from '../../components/CardTransfer'
+import Pin from '../../components/Pin'
 import photo from "../../images/navimg.png"
 import Input from '../../components/Input'
 import { FiEdit2 } from 'react-icons/fi'
@@ -12,21 +12,57 @@ import http from '../../helpers/http'
 import CurrencyInput from 'react-currency-input-field';
 import Button from 'react-bootstrap/Button'
 import Link from 'next/link'
+import { useRouter } from "next/router";
+import { Transfer } from '../../redux/actions/transactions'
+
+function MydModalWithGrid(props) {
+    const user = useSelector(state => state.user);
+    const { recepientDetail } = user
+    const amount = useSelector(state => state.transactions.transferAmount)
+    const notes = useSelector(state => state.transactions.notes)
+    const code = useSelector(state => state.code)
+    console.log(code)
+    console.log(recepientDetail)
+    const dispatch = useDispatch()
+    const router = useRouter()
+    const handleSubmit2 = async (e) => {
+        const token = window.localStorage.getItem('token')
+        e.preventDefault()
+        console.log("token :" + token + "pin :" + code + "amount : " + amount)
+        dispatch(Transfer(token, amount, notes, code?.code, recepientDetail.id))
+    }
+    return (
+
+        <Modal {...props} aria-labelledby="contained-modal-title-vcenter">
+            <Modal.Header className='border-0' closeButton>
+                <div><h5>Transfer</h5></div>
+            </Modal.Header>
+
+            <Modal.Body className="show-grid">
+                <Form onSubmit={handleSubmit2}>
+                    <div className='mb-5'>Enter the amount of money, and click submit</div>
+                    <Container>
+                        <Pin />
+                        <Button className='bg-color1 text-light' type="submit">Submit</Button>
+                    </Container>
+
+                </Form>
+            </Modal.Body>
+        </Modal>
+
+    );
+}
 
 const Confirmations = () => {
-    // const user = useSelector(state => state.user)
-    // const [users, setUsers] = useState([])
-    // const [errorMsg, setErrorMsg] = useState(null)
-
-    // useEffect(() => {
-    //     getUserSearch(`users`)
-    // }, [])
-
-    // const getUserSearch = async (url) => {
-    //     const token = window.localStorage.getItem('token')
-    //     const { data } = await http(token).get(url)
-    //     setUsers(data?.results)
-    // }
+    const [modalShow, setModalShow] = useState(false);
+    const router = useRouter();
+    const dispatch = useDispatch();
+    const auth = useSelector(state => state.auth)
+    const user = useSelector(state => state.user);
+    const transfer = useSelector(state => state.transactions);
+    const { recepientDetail } = user
+    const route = useRouter();
+    const balance = useSelector(state => state.auth?.balance)
     return (
         <>
             <Navbar />
@@ -51,9 +87,9 @@ const Confirmations = () => {
                                 </div>
                                 <Row className='shadow-sm my-2 mt-3 mx-2 rounded-btn2'>
                                     <Col sm={12} className='d-flex flex-column'>
-                                        <div className='my-2 ms-3'>Amount :</div>
+                                        <div className='my-2 ms-3'>Amount : </div>
                                         <InputGroup className="mb-3 border-0">
-                                            <FormControl size='lg' defaultValue={"100.000"} readOnly className="bg-transparent mb-0 py-3 border-0" aria-label="First name" />
+                                            <FormControl size='lg' defaultValue={transfer?.transferAmount} readOnly className="bg-transparent mb-0 py-3 border-0" aria-label="First name" />
                                         </InputGroup>
                                     </Col>
                                 </Row>
@@ -61,7 +97,7 @@ const Confirmations = () => {
                                     <Col sm={12} className='d-flex flex-column'>
                                         <div className='my-2 ms-3'>Balance Left :</div>
                                         <InputGroup className="mb-3 border-0">
-                                            <FormControl size='lg' defaultValue={"20.000"} readOnly className="bg-transparent mb-0 py-3 border-0" aria-label="First name" />
+                                            <FormControl size='lg' defaultValue={transfer.balanceLeft} readOnly className="bg-transparent mb-0 py-3 border-0" aria-label="First name" />
                                         </InputGroup>
                                     </Col>
                                 </Row>
@@ -69,7 +105,7 @@ const Confirmations = () => {
                                     <Col sm={12} className='d-flex flex-column'>
                                         <div className='my-2 ms-3'>Date & Time :</div>
                                         <InputGroup className="mb-3 border-0">
-                                            <FormControl size='lg' defaultValue={"May 11, 2020 - 12.20"} readOnly className="bg-transparent mb-0 py-3 border-0" aria-label="First name" />
+                                            <FormControl size='lg' defaultValue={transfer?.date} readOnly className="bg-transparent mb-0 py-3 border-0" aria-label="First name" />
                                         </InputGroup>
                                     </Col>
                                 </Row>
@@ -81,11 +117,10 @@ const Confirmations = () => {
                                         </InputGroup>
                                     </Col>
                                 </Row>
-                                <Link href={'/transfer/confirmation'} passHref>
-                                    <Button style={{ alignItems: "center" }} type="submit" variant="color6" className='inline-block btn mx-5 py-3 my-2 rounded-btn2 bg-color6 border-0 text-dark btn-secondary d-flex justify-content-end' size="lg">
-                                        <h5>Continue</h5>
-                                    </Button>
-                                </Link>
+                                <Button onClick={() => setModalShow(true)} style={{ alignItems: "center" }} type="submit" variant="color6" className='inline-block btn mx-5 py-3 my-2 rounded-btn2 bg-color6 border-0 text-dark btn-secondary d-flex justify-content-end' size="lg">
+                                    <h5>Continue</h5>
+                                </Button>
+                                <MydModalWithGrid show={modalShow} onHide={() => setModalShow(false)} />
                             </Col>
                         </Row>
                     </Col>

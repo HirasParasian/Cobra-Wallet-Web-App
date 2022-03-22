@@ -47,3 +47,16 @@ export const showModal = (data) => {
     payload: data
   }
 }
+
+export const Transfer = (token, amount, notes, code, recipient) => {
+  const params = new URLSearchParams()
+  params.append('amount', amount)
+  params.append('notes', notes)
+  params.append('recipient', recipient)
+  params.append('pin', code)
+  console.log(code)
+  return ({
+    type: 'SEND_MONEY',
+    payload: http(token).post('transactions/transfer', params)
+  })
+}

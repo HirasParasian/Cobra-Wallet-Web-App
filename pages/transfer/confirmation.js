@@ -1,19 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Container, Row, Col, InputGroup, FormControl, Modal, Form } from 'react-bootstrap'
 import SideBar from '../../components/SideBar'
 import Navbar from '../../components/Navbar'
 import Pin from '../../components/Pin'
-import photo from "../../images/navimg.png"
-import Input from '../../components/Input'
-import { FiEdit2 } from 'react-icons/fi'
-import { getUser } from '../../redux/actions/user'
 import { useSelector, useDispatch } from 'react-redux'
-import http from '../../helpers/http'
-import CurrencyInput from 'react-currency-input-field';
 import Button from 'react-bootstrap/Button'
-import Link from 'next/link'
 import { useRouter } from "next/router";
 import { Transfer } from '../../redux/actions/transactions'
+import ModalSuccess from '../../components/ModalSuccess'
+import ModalError from '../../components/ModalError'
 
 function MydModalWithGrid(props) {
     const user = useSelector(state => state.user);
@@ -66,6 +61,8 @@ const Confirmations = () => {
     return (
         <>
             <Navbar />
+            <ModalSuccess message={auth.successMsg} />
+            <ModalError message={auth.errorMsg} />
             <Container className='my-5'>
                 <Row>
                     <Col sm={12} md={3}>

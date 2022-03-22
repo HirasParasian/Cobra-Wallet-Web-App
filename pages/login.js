@@ -24,6 +24,7 @@ const Login = () => {
         const password = event.target.elements['password'].value
         dispatch(login(email, password))
         if (auth.isError == false) {
+            dispatch({ type: 'CLEAR_MESSAGE' });
             router.push('/home')
         }
         dispatch({ type: 'CLEAR_MESSAGE' });

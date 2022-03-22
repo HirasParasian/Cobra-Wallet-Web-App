@@ -29,18 +29,19 @@ const Pins = () => {
 
     const onSubmit = async (e) => {
         e.preventDefault()
-        dispatch({ type: 'CLEAR_MESSAGE' });
         await dispatch(registerUser(signup.userData, code?.code))
-        dispatch({ type: 'CLEAR_MESSAGE' });
+
     }
 
     const goToLogin = () => {
         router.push('/login')
         dispatch({ type: 'RESET_CODE' })
+        dispatch({ type: 'CLEAR_MESSAGE' });
     }
     return (
         <>
-
+            <ModalSuccess message={auth.successMsg} />
+            <ModalError message={auth.errorMsg} />
             <Container>
                 <Row>
                     <Col sm={12} md={7} className="bg-color1">

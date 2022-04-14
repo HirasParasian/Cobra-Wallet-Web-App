@@ -1,3 +1,6 @@
+![Biru Monster Lucu dan Unik Wallpaper Desktop](https://user-images.githubusercontent.com/97431455/163299468-ed220bee-fde8-4d10-bc03-0b06907ce623.png)
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
